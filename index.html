@@ -128,30 +128,37 @@
   <path d="M560 430 L760 335 L900 430 Z" fill="#9ac48a" opacity=".6"/>
   <rect y="425" width="900" height="600" fill="#5f8f4e"/>
 
-  <!-- 路边点缀：树、灌木、草丛、小花、石子（深色高对比，竖屏也可见） -->
+  <!-- 路边点缀：树、灌木、草丛、小花、石子（深色高对比，第五轮再加密） -->
   <g>
     <rect x="200" y="388" width="10" height="42" fill="#7a5230"/>
     <circle cx="205" cy="372" r="26" fill="#3f6b34"/><circle cx="190" cy="384" r="18" fill="#3f6b34"/>
     <ellipse cx="690" cy="438" rx="26" ry="13" fill="#3f6b34"/>
     <ellipse cx="120" cy="440" rx="20" ry="10" fill="#3f6b34"/>
-    <path d="M180 522 l8 -20 l8 20 z" fill="#3f6b34"/>
-    <path d="M212 530 l9 -22 l9 22 z" fill="#3f6b34"/>
-    <path d="M262 524 l7 -18 l7 18 z" fill="#3f6b34"/>
-    <path d="M332 536 l8 -20 l8 20 z" fill="#3f6b34"/>
-    <path d="M430 526 l7 -18 l7 18 z" fill="#3f6b34"/>
-    <path d="M482 540 l9 -22 l9 22 z" fill="#3f6b34"/>
-    <path d="M542 528 l8 -20 l8 20 z" fill="#3f6b34"/>
-    <path d="M602 544 l9 -22 l9 22 z" fill="#3f6b34"/>
-    <path d="M648 530 l7 -18 l7 18 z" fill="#3f6b34"/>
-    <path d="M682 548 l8 -20 l8 20 z" fill="#3f6b34"/>
-    <path d="M352 448 l6 -14 l6 14 z" fill="#3f6b34"/>
-    <path d="M472 452 l6 -14 l6 14 z" fill="#3f6b34"/>
+    <path d="M180 522 l9 -24 l9 24 z" fill="#3f6b34"/>
+    <path d="M212 532 l10 -26 l10 26 z" fill="#3f6b34"/>
+    <path d="M262 526 l8 -20 l8 20 z" fill="#3f6b34"/>
+    <path d="M292 546 l9 -22 l9 22 z" fill="#3f6b34"/>
+    <path d="M332 538 l8 -20 l8 20 z" fill="#3f6b34"/>
+    <path d="M368 552 l10 -26 l10 26 z" fill="#3f6b34"/>
+    <path d="M430 528 l8 -20 l8 20 z" fill="#3f6b34"/>
+    <path d="M462 548 l9 -22 l9 22 z" fill="#3f6b34"/>
+    <path d="M542 530 l9 -24 l9 24 z" fill="#3f6b34"/>
+    <path d="M576 552 l10 -26 l10 26 z" fill="#3f6b34"/>
+    <path d="M620 538 l8 -20 l8 20 z" fill="#3f6b34"/>
+    <path d="M654 554 l9 -22 l9 22 z" fill="#3f6b34"/>
+    <path d="M688 540 l8 -20 l8 20 z" fill="#3f6b34"/>
+    <path d="M352 448 l7 -16 l7 16 z" fill="#3f6b34"/>
+    <path d="M412 452 l7 -16 l7 16 z" fill="#3f6b34"/>
+    <path d="M472 450 l6 -14 l6 14 z" fill="#3f6b34"/>
+    <path d="M532 452 l7 -16 l7 16 z" fill="#3f6b34"/>
     <path d="M592 450 l6 -14 l6 14 z" fill="#3f6b34"/>
-    <circle cx="300" cy="548" r="4" fill="#ffd166"/><circle cx="304" cy="552" r="3" fill="#fff"/>
-    <circle cx="520" cy="556" r="4" fill="#ffd166"/><circle cx="524" cy="560" r="3" fill="#fff"/>
-    <circle cx="240" cy="564" r="4" fill="#ffd166"/><circle cx="244" cy="568" r="3" fill="#fff"/>
-    <circle cx="580" cy="550" r="4" fill="#ffd166"/><circle cx="584" cy="554" r="3" fill="#fff"/>
-    <circle cx="340" cy="568" r="7" fill="#8a8f98"/><circle cx="470" cy="560" r="6" fill="#8a8f98"/><circle cx="620" cy="572" r="7" fill="#8a8f98"/>
+    <circle cx="300" cy="552" r="4" fill="#ffd166"/><circle cx="304" cy="556" r="3" fill="#fff"/>
+    <circle cx="392" cy="566" r="4" fill="#f9a8c9"/><circle cx="396" cy="570" r="3" fill="#fff"/>
+    <circle cx="520" cy="558" r="4" fill="#ffd166"/><circle cx="524" cy="562" r="3" fill="#fff"/>
+    <circle cx="244" cy="568" r="4" fill="#f9a8c9"/><circle cx="248" cy="572" r="3" fill="#fff"/>
+    <circle cx="580" cy="572" r="4" fill="#f9a8c9"/><circle cx="584" cy="576" r="3" fill="#fff"/>
+    <circle cx="652" cy="566" r="4" fill="#ffd166"/><circle cx="656" cy="570" r="3" fill="#fff"/>
+    <circle cx="344" cy="574" r="7" fill="#8a8f98"/><circle cx="472" cy="564" r="6" fill="#8a8f98"/><circle cx="624" cy="578" r="7" fill="#8a8f98"/><circle cx="556" cy="582" r="5" fill="#8a8f98"/>
   </g>
 
   <!-- 公路 -->
@@ -272,7 +279,7 @@
     if (ar >= 900 / 520) {
       scene.setAttribute('viewBox', '0 0 900 520');
     } else {
-      const w = 520, h = w / ar, x0 = 160, y0 = 280 - h / 2;
+      const w = 520, h = w / ar, x0 = 150, y0 = 280 - h / 2;
       scene.setAttribute('viewBox', `${x0} ${y0} ${w} ${h}`);
     }
   }
