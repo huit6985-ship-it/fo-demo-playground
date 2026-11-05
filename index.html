@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Fo Demo · 鹈鹕骑行</title>
+<title>鹈鹕骑行 · Fo Demo</title>
 <style>
   :root { --speed: 1; }
   * { box-sizing: border-box; }
@@ -26,17 +26,17 @@
   .controls {
     flex-shrink: 0;
     display: flex; align-items: center; gap: 12px; flex-wrap: wrap; justify-content: center;
-    background: rgba(255,255,255,.06); padding: 8px 18px; border-radius: 14px;
+    background: rgba(255,255,255,.06); padding: 10px 18px; border-radius: 14px;
     max-width: 100%;
   }
-  label { font-size: .9rem; color: #cfd8f0; }
-  input[type=range] { width: min(220px, 38vw); accent-color: #ffd166; }
+  label { font-size: .95rem; color: #cfd8f0; }
+  input[type=range] { width: min(220px, 38vw); height: 30px; accent-color: #ffd166; touch-action: none; }
   button {
-    font: inherit; font-size: .9rem; padding: 7px 16px; border-radius: 999px; border: 1px solid #ffd166;
+    font: inherit; font-size: .95rem; padding: 9px 18px; border-radius: 999px; border: 1.5px solid #ffd166;
     background: transparent; color: #ffd166; cursor: pointer;
   }
   button:hover { background: rgba(255,209,102,.15); }
-  .hint { margin: 0; font-size: .8rem; color: #8f9bbd; flex-shrink: 0; text-align: center; }
+  .hint { margin: 0; font-size: .85rem; color: #aab6d8; flex-shrink: 0; text-align: center; }
   @media (max-height: 600px) {
     .hint { display: none; }
     .controls { padding: 6px 14px; }
@@ -81,10 +81,10 @@
 </style>
 </head>
 <body>
-<h1>鹈鹕骑行 · Fo Demo</h1>
+<h1>鹈鹕骑行</h1>
 
 <div class="stage">
-<svg id="scene" viewBox="0 0 900 520" preserveAspectRatio="xMidYMid meet" role="img" aria-label="鹈鹕骑自行车的动画场景">
+<svg id="scene" viewBox="0 0 900 520" preserveAspectRatio="xMidYMid slice" role="img" aria-label="鹈鹕骑自行车的动画场景">
   <defs>
     <linearGradient id="skyDay" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0" stop-color="#8fd0f7"/><stop offset="1" stop-color="#d9f0fb"/>
@@ -94,11 +94,11 @@
     </linearGradient>
   </defs>
 
-  <!-- 天空（昼/夜两层） -->
-  <rect width="900" height="520" fill="url(#skyDay)"/>
-  <g class="night-sky"><rect width="900" height="520" fill="url(#skyNight)"/></g>
-  <circle class="sun" cx="780" cy="95" r="46" fill="#ffd166"/>
-  <circle class="night-sun" cx="780" cy="95" r="38" fill="#f4f1de"/>
+  <!-- 天空（上下加长，竖屏放大后也不会露底） -->
+  <rect x="0" y="-600" width="900" height="1120" fill="url(#skyDay)"/>
+  <g class="night-sky"><rect x="0" y="-600" width="900" height="1120" fill="url(#skyNight)"/></g>
+  <circle class="sun" cx="745" cy="95" r="46" fill="#ffd166"/>
+  <circle class="night-sun" cx="745" cy="95" r="38" fill="#f4f1de"/>
   <g class="stars" fill="#ffffff">
     <circle cx="80" cy="70" r="2"/><circle cx="180" cy="120" r="1.6"/><circle cx="320" cy="60" r="2"/>
     <circle cx="470" cy="110" r="1.5"/><circle cx="620" cy="55" r="2"/><circle cx="700" cy="150" r="1.6"/>
@@ -125,7 +125,7 @@
   <path d="M0 430 L140 330 L300 430 Z" fill="#9ac48a" opacity=".6"/>
   <path d="M220 430 L420 310 L640 430 Z" fill="#7fae72" opacity=".6"/>
   <path d="M560 430 L760 335 L900 430 Z" fill="#9ac48a" opacity=".6"/>
-  <rect y="425" width="900" height="95" fill="#5f8f4e"/>
+  <rect y="425" width="900" height="600" fill="#5f8f4e"/>
 
   <!-- 公路 -->
   <rect y="452" width="900" height="48" fill="#3c4048"/>
@@ -221,6 +221,7 @@
   const scene = document.getElementById('scene');
   const pelican = document.getElementById('pelican');
   const speed = document.getElementById('speed');
+  const stage = document.querySelector('.stage');
   speed.addEventListener('input', () => {
     scene.style.setProperty('--speed', speed.value || 1);
   });
@@ -236,6 +237,20 @@
   document.getElementById('toggle-night').addEventListener('click', () => {
     scene.classList.toggle('night');
   });
+
+  // 视口适配：宽屏用完整 900x520 画面；竖屏收窄视野并放大角色，铺满不留空带
+  function fitView() {
+    const r = stage.getBoundingClientRect();
+    const ar = r.width / Math.max(1, r.height);
+    if (ar >= 900 / 520) {
+      scene.setAttribute('viewBox', '0 0 900 520');
+    } else {
+      const w = 720, h = w / ar, x0 = 90, y0 = 260 - h / 2;
+      scene.setAttribute('viewBox', `${x0} ${y0} ${w} ${h}`);
+    }
+  }
+  window.addEventListener('resize', fitView);
+  fitView();
 </script>
 </body>
 </html>
