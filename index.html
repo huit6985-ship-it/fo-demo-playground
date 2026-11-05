@@ -36,7 +36,7 @@
     background: transparent; color: #ffd166; cursor: pointer;
   }
   button:hover { background: rgba(255,209,102,.15); }
-  .hint { margin: 0; font-size: .9rem; color: #c3cdea; flex-shrink: 0; text-align: center; }
+  .hint { margin: 0; font-size: .95rem; color: #d7def5; flex-shrink: 0; text-align: center; }
   @media (max-height: 600px) {
     .hint { display: none; }
     .controls { padding: 6px 14px; }
@@ -128,17 +128,30 @@
   <path d="M560 430 L760 335 L900 430 Z" fill="#9ac48a" opacity=".6"/>
   <rect y="425" width="900" height="600" fill="#5f8f4e"/>
 
-  <!-- 路边点缀：树、灌木、草丛 -->
+  <!-- 路边点缀：树、灌木、草丛、小花、石子（深色高对比，竖屏也可见） -->
   <g>
-    <rect x="96" y="388" width="10" height="42" fill="#7a5230"/>
-    <circle cx="101" cy="372" r="26" fill="#4e8a3f"/><circle cx="86" cy="384" r="18" fill="#4e8a3f"/>
-    <ellipse cx="710" cy="438" rx="24" ry="12" fill="#4e8a3f"/>
-    <path d="M180 520 l6 -14 l6 14 z" fill="#4e8a3f"/>
-    <path d="M205 525 l7 -16 l7 16 z" fill="#4e8a3f"/>
-    <path d="M640 518 l6 -14 l6 14 z" fill="#4e8a3f"/>
-    <path d="M665 524 l7 -16 l7 16 z" fill="#4e8a3f"/>
-    <path d="M430 522 l6 -14 l6 14 z" fill="#4e8a3f"/>
-    <circle cx="340" cy="512" r="5" fill="#8a8f98"/><circle cx="560" cy="520" r="4" fill="#8a8f98"/>
+    <rect x="200" y="388" width="10" height="42" fill="#7a5230"/>
+    <circle cx="205" cy="372" r="26" fill="#3f6b34"/><circle cx="190" cy="384" r="18" fill="#3f6b34"/>
+    <ellipse cx="690" cy="438" rx="26" ry="13" fill="#3f6b34"/>
+    <ellipse cx="120" cy="440" rx="20" ry="10" fill="#3f6b34"/>
+    <path d="M180 522 l8 -20 l8 20 z" fill="#3f6b34"/>
+    <path d="M212 530 l9 -22 l9 22 z" fill="#3f6b34"/>
+    <path d="M262 524 l7 -18 l7 18 z" fill="#3f6b34"/>
+    <path d="M332 536 l8 -20 l8 20 z" fill="#3f6b34"/>
+    <path d="M430 526 l7 -18 l7 18 z" fill="#3f6b34"/>
+    <path d="M482 540 l9 -22 l9 22 z" fill="#3f6b34"/>
+    <path d="M542 528 l8 -20 l8 20 z" fill="#3f6b34"/>
+    <path d="M602 544 l9 -22 l9 22 z" fill="#3f6b34"/>
+    <path d="M648 530 l7 -18 l7 18 z" fill="#3f6b34"/>
+    <path d="M682 548 l8 -20 l8 20 z" fill="#3f6b34"/>
+    <path d="M352 448 l6 -14 l6 14 z" fill="#3f6b34"/>
+    <path d="M472 452 l6 -14 l6 14 z" fill="#3f6b34"/>
+    <path d="M592 450 l6 -14 l6 14 z" fill="#3f6b34"/>
+    <circle cx="300" cy="548" r="4" fill="#ffd166"/><circle cx="304" cy="552" r="3" fill="#fff"/>
+    <circle cx="520" cy="556" r="4" fill="#ffd166"/><circle cx="524" cy="560" r="3" fill="#fff"/>
+    <circle cx="240" cy="564" r="4" fill="#ffd166"/><circle cx="244" cy="568" r="3" fill="#fff"/>
+    <circle cx="580" cy="550" r="4" fill="#ffd166"/><circle cx="584" cy="554" r="3" fill="#fff"/>
+    <circle cx="340" cy="568" r="7" fill="#8a8f98"/><circle cx="470" cy="560" r="6" fill="#8a8f98"/><circle cx="620" cy="572" r="7" fill="#8a8f98"/>
   </g>
 
   <!-- 公路 -->
@@ -252,14 +265,14 @@
     scene.classList.toggle('night');
   });
 
-  // 视口适配：宽屏用完整 900x520 画面；竖屏收窄视野、放大角色，并把构图重心略压向路面
+  // 视口适配：宽屏用完整 900x520 画面；竖屏收窄视野、放大角色，构图居中
   function fitView() {
     const r = stage.getBoundingClientRect();
     const ar = r.width / Math.max(1, r.height);
     if (ar >= 900 / 520) {
       scene.setAttribute('viewBox', '0 0 900 520');
     } else {
-      const w = 560, h = w / ar, x0 = 170, y0 = 290 - h / 2;
+      const w = 520, h = w / ar, x0 = 160, y0 = 280 - h / 2;
       scene.setAttribute('viewBox', `${x0} ${y0} ${w} ${h}`);
     }
   }
