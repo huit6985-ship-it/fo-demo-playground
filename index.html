@@ -7,30 +7,40 @@
 <style>
   :root { --speed: 1; }
   * { box-sizing: border-box; }
+  html, body { height: 100%; }
   body {
-    margin: 0; min-height: 100vh; display: flex; flex-direction: column;
-    align-items: center; justify-content: center; gap: 18px;
+    margin: 0; height: 100dvh; overflow: hidden;
+    display: flex; flex-direction: column; align-items: center;
+    gap: 10px; padding: 12px 16px;
     background: #0b1020; color: #e8ecf8;
     font-family: system-ui, "PingFang SC", "Microsoft YaHei", sans-serif;
   }
-  h1 { margin: 0; font-size: 1.4rem; font-weight: 600; letter-spacing: .05em; color: #ffd166; }
+  h1 { margin: 0; font-size: clamp(1rem, 2.4vh, 1.4rem); font-weight: 600; letter-spacing: .05em; color: #ffd166; flex-shrink: 0; }
   .stage {
-    width: min(92vw, 960px); border-radius: 18px; overflow: hidden;
+    flex: 1 1 auto; min-height: 0;
+    width: min(100%, 1000px);
+    display: flex; border-radius: 18px; overflow: hidden;
     box-shadow: 0 20px 60px rgba(0,0,0,.45);
   }
-  svg { display: block; width: 100%; height: auto; background: #87c7f5; }
+  svg { display: block; width: 100%; height: 100%; background: #87c7f5; }
   .controls {
-    display: flex; align-items: center; gap: 14px; flex-wrap: wrap; justify-content: center;
-    background: rgba(255,255,255,.06); padding: 12px 20px; border-radius: 14px;
+    flex-shrink: 0;
+    display: flex; align-items: center; gap: 12px; flex-wrap: wrap; justify-content: center;
+    background: rgba(255,255,255,.06); padding: 8px 18px; border-radius: 14px;
+    max-width: 100%;
   }
-  label { font-size: .95rem; color: #cfd8f0; }
-  input[type=range] { width: 220px; accent-color: #ffd166; }
+  label { font-size: .9rem; color: #cfd8f0; }
+  input[type=range] { width: min(220px, 38vw); accent-color: #ffd166; }
   button {
-    font: inherit; padding: 8px 18px; border-radius: 999px; border: 1px solid #ffd166;
+    font: inherit; font-size: .9rem; padding: 7px 16px; border-radius: 999px; border: 1px solid #ffd166;
     background: transparent; color: #ffd166; cursor: pointer;
   }
   button:hover { background: rgba(255,209,102,.15); }
-  .hint { font-size: .85rem; color: #8f9bbd; }
+  .hint { margin: 0; font-size: .8rem; color: #8f9bbd; flex-shrink: 0; text-align: center; }
+  @media (max-height: 600px) {
+    .hint { display: none; }
+    .controls { padding: 6px 14px; }
+  }
 
   /* ---------- 动画 ---------- */
   @keyframes spin { to { transform: rotate(360deg); } }
@@ -74,7 +84,7 @@
 <h1>鹈鹕骑行 · Fo Demo</h1>
 
 <div class="stage">
-<svg id="scene" viewBox="0 0 900 520" role="img" aria-label="鹈鹕骑自行车的动画场景">
+<svg id="scene" viewBox="0 0 900 520" preserveAspectRatio="xMidYMid meet" role="img" aria-label="鹈鹕骑自行车的动画场景">
   <defs>
     <linearGradient id="skyDay" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0" stop-color="#8fd0f7"/><stop offset="1" stop-color="#d9f0fb"/>
@@ -170,7 +180,7 @@
 
   <!-- 鹈鹕 -->
   <g class="pelican" id="pelican">
-    <!-- 后腿（踩下踏板的一条，简化为连到曲柄） -->
+    <!-- 后腿（简化为连到曲柄） -->
     <path d="M310 285 Q 330 330 320 396" fill="none" stroke="#e8892b" stroke-width="7" stroke-linecap="round"/>
     <!-- 尾羽 -->
     <path d="M255 250 L220 262 L252 270 Z" fill="#f4f1de"/>
