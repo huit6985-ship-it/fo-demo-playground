@@ -25,18 +25,18 @@
   svg { display: block; width: 100%; height: 100%; background: #87c7f5; }
   .controls {
     flex-shrink: 0;
-    display: flex; align-items: center; gap: 12px; flex-wrap: wrap; justify-content: center;
+    display: flex; align-items: center; gap: 10px; flex-wrap: wrap; justify-content: center;
     background: rgba(255,255,255,.06); padding: 10px 18px; border-radius: 14px;
     max-width: 100%;
   }
   label { font-size: .95rem; color: #cfd8f0; }
-  input[type=range] { width: min(220px, 38vw); height: 30px; accent-color: #ffd166; touch-action: none; }
+  input[type=range] { width: min(220px, 38vw); height: 34px; accent-color: #ffd166; touch-action: none; }
   button {
-    font: inherit; font-size: .95rem; padding: 9px 18px; border-radius: 999px; border: 1.5px solid #ffd166;
+    font: inherit; font-size: .95rem; padding: 10px 20px; border-radius: 999px; border: 1.5px solid #ffd166;
     background: transparent; color: #ffd166; cursor: pointer;
   }
   button:hover { background: rgba(255,209,102,.15); }
-  .hint { margin: 0; font-size: .85rem; color: #aab6d8; flex-shrink: 0; text-align: center; }
+  .hint { margin: 0; font-size: .9rem; color: #c3cdea; flex-shrink: 0; text-align: center; }
   @media (max-height: 600px) {
     .hint { display: none; }
     .controls { padding: 6px 14px; }
@@ -103,6 +103,7 @@
     <circle cx="80" cy="70" r="2"/><circle cx="180" cy="120" r="1.6"/><circle cx="320" cy="60" r="2"/>
     <circle cx="470" cy="110" r="1.5"/><circle cx="620" cy="55" r="2"/><circle cx="700" cy="150" r="1.6"/>
     <circle cx="140" cy="180" r="1.4"/><circle cx="560" cy="170" r="1.4"/>
+    <circle cx="300" cy="-40" r="1.6"/><circle cx="450" cy="-90" r="1.5"/><circle cx="650" cy="-30" r="1.6"/>
   </g>
 
   <!-- 云 -->
@@ -126,6 +127,19 @@
   <path d="M220 430 L420 310 L640 430 Z" fill="#7fae72" opacity=".6"/>
   <path d="M560 430 L760 335 L900 430 Z" fill="#9ac48a" opacity=".6"/>
   <rect y="425" width="900" height="600" fill="#5f8f4e"/>
+
+  <!-- 路边点缀：树、灌木、草丛 -->
+  <g>
+    <rect x="96" y="388" width="10" height="42" fill="#7a5230"/>
+    <circle cx="101" cy="372" r="26" fill="#4e8a3f"/><circle cx="86" cy="384" r="18" fill="#4e8a3f"/>
+    <ellipse cx="710" cy="438" rx="24" ry="12" fill="#4e8a3f"/>
+    <path d="M180 520 l6 -14 l6 14 z" fill="#4e8a3f"/>
+    <path d="M205 525 l7 -16 l7 16 z" fill="#4e8a3f"/>
+    <path d="M640 518 l6 -14 l6 14 z" fill="#4e8a3f"/>
+    <path d="M665 524 l7 -16 l7 16 z" fill="#4e8a3f"/>
+    <path d="M430 522 l6 -14 l6 14 z" fill="#4e8a3f"/>
+    <circle cx="340" cy="512" r="5" fill="#8a8f98"/><circle cx="560" cy="520" r="4" fill="#8a8f98"/>
+  </g>
 
   <!-- 公路 -->
   <rect y="452" width="900" height="48" fill="#3c4048"/>
@@ -238,14 +252,14 @@
     scene.classList.toggle('night');
   });
 
-  // 视口适配：宽屏用完整 900x520 画面；竖屏收窄视野并放大角色，铺满不留空带
+  // 视口适配：宽屏用完整 900x520 画面；竖屏收窄视野、放大角色，并把构图重心略压向路面
   function fitView() {
     const r = stage.getBoundingClientRect();
     const ar = r.width / Math.max(1, r.height);
     if (ar >= 900 / 520) {
       scene.setAttribute('viewBox', '0 0 900 520');
     } else {
-      const w = 720, h = w / ar, x0 = 90, y0 = 260 - h / 2;
+      const w = 560, h = w / ar, x0 = 170, y0 = 290 - h / 2;
       scene.setAttribute('viewBox', `${x0} ${y0} ${w} ${h}`);
     }
   }
